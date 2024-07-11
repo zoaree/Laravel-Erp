@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 
@@ -16,11 +18,19 @@ use App\Http\Controllers\RoutingController;
 
 require __DIR__ . '/auth.php';
 
-Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
-    Route::get('', [RoutingController::class, 'index'])->name('root');
+Route::group(['middleware'=>'auth'], function () {
     Route::get('/home', fn()=>view('index'))->name('home');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'Logout'])->name('logout');
+
+    // sayfaların rotaları burada
+    Route::group(['prefix' => 'pagination'], function () {
+        Route::get('/eisenhower', [PageController::class, 'eisenhower'])->name('pagination.eisenhower');
+    });
+
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
     Route::get('{any}', [RoutingController::class, 'root'])->name('any');
 });
 
+// Index sayfası ve yönlendirme
+Route::get('', [RoutingController::class, 'index'])->name('root');

@@ -36,6 +36,13 @@
             <li class="menu-title">Apps</li>
 
             <li class="menu-item">
+                <a href="{{ route('pagination.eisenhower') }}" data-fc-type="collapse" class="menu-link">
+                    <span class="menu-icon"><i class="mgc_layout_grid_line"></i></span>
+                    <span class="menu-text"> EisenHower </span>
+                </a>
+            </li>
+
+            <li class="menu-item">
                 <a href="{{ route('second', ['apps', 'calendar']) }}" class="menu-link">
                     <span class="menu-icon"><i class="mgc_calendar_line"></i></span>
                     <span class="menu-text"> Calendar </span>
