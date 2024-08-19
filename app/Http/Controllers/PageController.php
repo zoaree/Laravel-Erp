@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -11,15 +12,16 @@ class PageController extends Controller
      */
     public function eisenhower()
     {
-        return view('pagination.eisenhower.eisenhower');
+        $user = Auth::user();
+        return view('pagination.eisenhower.eisenhower', compact('user'));
     }
 
     /**
      * Store the newly created resource in storage.
      */
-    public function store(Request $request): never
+    public function suIzleme()
     {
-        abort(404);
+
     }
 
     /**

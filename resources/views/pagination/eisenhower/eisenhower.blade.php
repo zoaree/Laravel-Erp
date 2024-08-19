@@ -5,6 +5,8 @@
 @endsection
 @section('content')
 
+
+
 <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
 	<div class="card bg-red-200">
 		<div class="p-5">

@@ -4,6 +4,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\SuIzleme;
+use App\Http\Controllers\SuIzlemeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,15 @@ Route::group(['middleware'=>'auth'], function () {
     // sayfaların rotaları burada
     Route::group(['prefix' => 'pagination'], function () {
         Route::get('/eisenhower', [PageController::class, 'eisenhower'])->name('pagination.eisenhower');
+        Route::get('/suIzleme', [SuIzlemeController::class, 'index'])->name('pagination.suIzleme');
+        Route::get('/suIzleme/Store', [SuIzlemeController::class, 'store'])->name('pagination.suIzleme.store');
+        Route::post('/suIzleme/Create', [SuIzlemeController::class, 'create'])->name('pagination.suIzleme.create');
+        Route::get('/suIzleme/Show', [SuIzlemeController::class, 'show'])->name('pagination.suIzleme.show');
+
+
+
+
+
     });
 
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');

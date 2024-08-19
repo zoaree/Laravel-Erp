@@ -33,23 +33,23 @@
                 </a>
             </li>
 
-            <li class="menu-title">Apps</li>
+            <li class="menu-title">Genel</li>
 
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="{{ route('pagination.eisenhower') }}" data-fc-type="collapse" class="menu-link">
                     <span class="menu-icon"><i class="mgc_layout_grid_line"></i></span>
                     <span class="menu-text"> EisenHower </span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-item">
-                <a href="{{ route('second', ['apps', 'calendar']) }}" class="menu-link">
-                    <span class="menu-icon"><i class="mgc_calendar_line"></i></span>
-                    <span class="menu-text"> Calendar </span>
+                <a href="{{ route('pagination.suIzleme') }}" class="menu-link">
+                    <span class="menu-icon"><i class="mgc_microscope_fill"></i></span>
+                    <span class="menu-text"> Su İzleme </span>
                 </a>
             </li>
 
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="{{ route('second', ['apps', 'tickets']) }}" class="menu-link">
                     <span class="menu-icon"><i class="mgc_coupon_line"></i></span>
                     <span class="menu-text"> Tickets </span>
@@ -534,7 +534,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
 
     </div>
