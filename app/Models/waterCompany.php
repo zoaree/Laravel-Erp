@@ -14,4 +14,5 @@ class waterCompany extends Model
         'companyName',
         'user_id'
     ];
+    protected $dates = ['deleted_at'];
 }

@@ -38,6 +38,7 @@ class water extends Model
         'notes',
         'image_path',
         'user_id',
+        'utm_zone',
     ];
     protected $casts = [
         'alinis_sekli' => 'array',
@@ -45,5 +46,9 @@ class water extends Model
     public function company()
     {
         return $this->belongsTo(WaterCompany::class, 'company_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

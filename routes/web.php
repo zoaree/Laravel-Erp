@@ -31,11 +31,9 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('/suIzleme', [SuIzlemeController::class, 'index'])->name('pagination.suIzleme');
         Route::get('/suIzleme/Store', [SuIzlemeController::class, 'store'])->name('pagination.suIzleme.store');
         Route::post('/suIzleme/Create', [SuIzlemeController::class, 'create'])->name('pagination.suIzleme.create');
-        Route::get('/suIzleme/Show', [SuIzlemeController::class, 'show'])->name('pagination.suIzleme.show');
-
-
-
-
+        Route::post('/suIzleme/CompCreate', [SuIzlemeController::class, 'companyCreate'])->name('pagination.suIzleme.CompCreate');
+        Route::post('/suIzleme/CompDelete', [SuIzlemeController::class, 'companyDelete'])->name('pagination.suIzleme.CompDelete');
+        Route::get('/suIzleme/Show/{id}', [SuIzlemeController::class, 'show'])->name('pagination.suIzleme.show');
 
     });
 

@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Validator;
 use App\Models\water;
 use App\Models\waterCompany;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class SuIzlemeController extends Controller
 {
@@ -19,23 +20,29 @@ class SuIzlemeController extends Controller
         $user = Auth::user();
 
         $results = Water::with('company')
-            ->select('company_id', 'extent')
+            ->select('company_id', 'extent', 'specimen','created_at','id')
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $company = waterCompany::orderBy('id', 'desc')->get();
+
         $data = [];
-        $index = 1;
 
         foreach ($results as $result) {
+            $formattedDate = Carbon::parse($result->created_at)
+                ->setTimezone('Europe/Istanbul')
+                ->translatedFormat('d F Y H:i');
+
             $data[] = [
-                sprintf('%02d', $index),
+                $result->specimen,
                 $result->company ? $result->company->companyName : 'Bilinmiyor',
                 $result->extent,
+                $formattedDate,
+                $result->id,
             ];
-            $index++;
         }
 
-        return view('pagination.suIzleme.suIzleme', compact('user', 'data'));
+        return view('pagination.suIzleme.suIzleme', compact('user', 'data','company'));
     }
     /**
      * Show the form for creating a new resource.
@@ -74,6 +81,9 @@ class SuIzlemeController extends Controller
             $file->move($destinationPath, $filename);
             $request->merge(['image_path' => 'su_izleme/' . $filename]);
         }
+        $veri['coord_x'] = round($request->input('coord_x'), 2);
+        $veri['coord_y'] = round($request->input('coord_y'), 2);
+
 
         $veri = $request->except('image_upload');
         $veri['user_id'] = $userId;
@@ -98,19 +108,44 @@ class SuIzlemeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        return view('pagination.suIzleme.suIzlemeShow');
+        $suIzleme = Water::with('company')->with('user')->find($id);
+        if (!$suIzleme) {
+            abort(404);
+        }
+        return view('pagination.suIzleme.suIzlemeShow', compact('suIzleme'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function companyCreate(Request $request)
     {
-        //
+         $userId = Auth::id();
+        $validatedData = $request->validate([
+            'companyName' => 'required'
+
+            ]);
+        $veri = $request->all();
+        $veri['user_id'] = $userId;
+        $company = new waterCompany($veri);
+        $company->save();
+
+        return redirect()->back()->with('success', 'Kaydınız başarıyla oluşturuldu.');
     }
 
+    public function companyDelete(Request $request)
+    {
+         $company = waterCompany::find($request->input('id'));
+
+    if ($company) {
+        $company->delete();
+        return redirect()->back()->with('success', 'Firma başarıyla silindi.');
+    }
+
+    return redirect()->back()->with('error', 'Firma bulunamadı.');
+    }
     /**
      * Update the specified resource in storage.
      */

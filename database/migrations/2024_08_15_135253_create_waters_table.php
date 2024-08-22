@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained('water_companies')->onDelete('cascade');
             $table->string('company_person')->nullable();
             $table->string('purpose')->nullable();
-            $table->decimal('coord_x', 10, 7)->nullable();
-            $table->decimal('coord_y', 10, 7)->nullable();
+            $table->decimal('coord_x', 18, 9)->nullable();
+            $table->decimal('coord_y', 18, 9)->nullable();
             $table->string('specimen')->nullable();
             $table->string('type')->nullable();
             $table->string('weather')->nullable();

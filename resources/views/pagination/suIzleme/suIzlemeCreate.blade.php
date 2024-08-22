@@ -15,15 +15,15 @@
             <div class="alert alert-danger mb-2.5">
                 <ul>
                     @foreach ($errors->all() as $error)
-                    <div class="bg-danger/25 text-danger text-sm rounded-md p-4 mb-2.5" role="alert"> <!-- Her hata mesajı arasında boşluk -->
+                    <div class="bg-danger/25 text-danger text-sm rounded-md p-4 mb-2.5" role="alert">
                         <span class="font-bold">Hata: </span> {{ $error }}
                     </div>
                     @endforeach
                 </ul>
             </div>
             @endif
-            <!-- Form Başlıkları -->
-            <form method="POST" action="{{ route('pagination.suIzleme.create') }}" enctype="multipart/form-data">
+
+            <form    action="{{ route('pagination.suIzleme.create') }}" enctype="multipart/form-data">
                 @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                 <div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <!-- Koordinatlar ve Diğer Alanlar -->
+
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Numune Alan:</label>
@@ -65,7 +65,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Numune No:</label>
-                    <input type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" id="specimen" name="specimen">
+                    <input type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" id="specimen" name="specimen" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Türü / Tipi:</label>
@@ -173,7 +173,7 @@
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 cursor-pointer"
                         id="image_upload"
                         name="image_upload"
-                        accept="image/*"
+                        accept="image/*" required
                     />
                     </div>
                 </div>
@@ -213,40 +213,19 @@
 </script>
 <script>
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    }
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
 
-
-    function showPosition(position) {
-
-        document.getElementById("coord_x").value = position.coords.latitude;
-        document.getElementById("coord_y").value = position.coords.longitude;
-    }
-
-
-    function showError(error) {
-        switch(error.code) {
-            case error.PERMISSION_DENIED:
-                alert("Kullanıcı konum erişimini reddetti.");
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert("Konum bilgisi alınamadı.");
-                break;
-            case error.TIMEOUT:
-                alert("Konum alma işlemi zaman aşımına uğradı.");
-                break;
-            case error.UNKNOWN_ERROR:
-                alert("Bilinmeyen bir hata oluştu.");
-                break;
-        }
-    }
-
-    // Sayfa yüklendiğinde otomatik olarak mevcut konumu al
-    window.onload = getLocation;
+        // Alınan enlem ve boylamı inputlara yerleştirin
+        document.getElementById('coord_x').value = lat;
+        document.getElementById('coord_y').value = lng;
+    });
+} else {
+    alert("Geolocation is not supported by this browser.");
+}
 </script>
+
+
 @endsection
