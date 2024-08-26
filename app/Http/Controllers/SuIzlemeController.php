@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\water;
 use App\Models\waterCompany;
 use Carbon\Carbon;
@@ -20,7 +21,7 @@ class SuIzlemeController extends Controller
         $user = Auth::user();
 
         $results = Water::with('company')
-            ->select('company_id', 'extent', 'specimen','created_at','id')
+            ->select('company_id', 'extent', 'specimen', 'created_at', 'id')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -42,13 +43,13 @@ class SuIzlemeController extends Controller
             ];
         }
 
-        return view('pagination.suIzleme.suIzleme', compact('user', 'data','company'));
+        return view('pagination.suIzleme.suIzleme', compact('user', 'data', 'company'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-{
+    {
 
         $userId = Auth::id();
 
@@ -91,9 +92,9 @@ class SuIzlemeController extends Controller
         $water = new Water($veri);
         $water->save();
 
-        return redirect()->back()->with('success', 'Kaydınız başarıyla oluşturuldu.');
-
-}
+        return redirect()->route('pagination.suIzleme.show', ['id' => $water->id])
+            ->with('success', 'Kaydınız başarıyla oluşturuldu.');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -102,7 +103,7 @@ class SuIzlemeController extends Controller
     {
         $user = Auth::user();
         $company = waterCompany::all();
-        return view('pagination.suIzleme.suIzlemeCreate', compact('company','user'));
+        return view('pagination.suIzleme.suIzlemeCreate', compact('company', 'user'));
     }
 
     /**
@@ -122,11 +123,11 @@ class SuIzlemeController extends Controller
      */
     public function companyCreate(Request $request)
     {
-         $userId = Auth::id();
+        $userId = Auth::id();
         $validatedData = $request->validate([
             'companyName' => 'required'
 
-            ]);
+        ]);
         $veri = $request->all();
         $veri['user_id'] = $userId;
         $company = new waterCompany($veri);
@@ -137,14 +138,14 @@ class SuIzlemeController extends Controller
 
     public function companyDelete(Request $request)
     {
-         $company = waterCompany::find($request->input('id'));
+        $company = waterCompany::find($request->input('id'));
 
-    if ($company) {
-        $company->delete();
-        return redirect()->back()->with('success', 'Firma başarıyla silindi.');
-    }
+        if ($company) {
+            $company->delete();
+            return redirect()->back()->with('success', 'Firma başarıyla silindi.');
+        }
 
-    return redirect()->back()->with('error', 'Firma bulunamadı.');
+        return redirect()->back()->with('error', 'Firma bulunamadı.');
     }
     /**
      * Update the specified resource in storage.

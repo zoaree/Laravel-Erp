@@ -17,6 +17,7 @@
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
-        </div>
+        </div><img src="/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
+
     </body>
 </html>

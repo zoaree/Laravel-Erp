@@ -23,7 +23,7 @@
                         <td class="border p-1 font-bold">Firma/Proje:</td>
                         <td class="border p-1 adjust-text"> {{ $suIzleme->company->companyName ?? 'Bilinmiyor' }}</td>
                         <td class="border p-1 font-bold">Firma Mühendisi:</td>
-                        <td class="border p-1 adjust-text">{{ $suIzleme->company->company_person ?? '--' }}</td>
+                        <td class="border p-1 adjust-text">{{ $suIzleme->company_person ?? '--' }}</td>
                     </tr>
                     <tr class="border flex flex-col sm:table-row">
                         <td class="border p-1 font-bold">Numune Alan:</td>
@@ -53,9 +53,7 @@
                         <td class="border p-1 font-bold">Alınış Şekli:</td>
                         <td class="border p-1 adjust-text">
 
-                            @if ($suIzleme->alinis_sekli!=null)
-
-
+                        @if ($suIzleme->alinis_sekli!=null)
                         @foreach ($suIzleme->alinis_sekli as $item)
                             {{ $item}} /
                         @endforeach

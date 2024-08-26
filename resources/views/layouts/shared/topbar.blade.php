@@ -51,7 +51,8 @@
                 <i class="mgc_notification_line text-2xl"></i>
             </span>
         </button>
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg">
 
             <div class="p-2 border-b border-dashed border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-between">
@@ -69,12 +70,14 @@
                     <div class="card-body">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
-                                <div class="flex justify-center items-center h-9 w-9 rounded-full bg text-white bg-primary">
+                                <div
+                                    class="flex justify-center items-center h-9 w-9 rounded-full bg text-white bg-primary">
                                     <i class="mgc_message_3_line text-lg"></i>
                                 </div>
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Datacorp <small class="font-normal text-gray-500 ms-1">1 min ago</small></h5>
+                                <h5 class="text-sm font-semibold mb-1">Datacorp <small
+                                        class="font-normal text-gray-500 ms-1">1 min ago</small></h5>
                                 <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
                             </div>
                         </div>
@@ -90,7 +93,8 @@
                                 </div>
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Admin <small class="font-normal text-gray-500 ms-1">1 hr ago</small></h5>
+                                <h5 class="text-sm font-semibold mb-1">Admin <small
+                                        class="font-normal text-gray-500 ms-1">1 hr ago</small></h5>
                                 <small class="noti-item-subtitle text-muted">New user registered</small>
                             </div>
                         </div>
@@ -104,8 +108,10 @@
                                 <img src="/images/users/avatar-2.jpg" class="rounded-full h-9 w-9" alt="">
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small class="font-normal text-gray-500 ms-1">1 day ago</small></h5>
-                                <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small
+                                        class="font-normal text-gray-500 ms-1">1 day ago</small></h5>
+                                <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next
+                                    meeting</small>
                             </div>
                         </div>
                     </div>
@@ -114,7 +120,8 @@
 
             </div>
 
-            <a href="javascript:void(0);" class="p-2 border-t border-dashed border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
+            <a href="javascript:void(0);"
+                class="p-2 border-t border-dashed border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
                 Hepsini Görüntüle
             </a>
         </div>
@@ -133,15 +140,56 @@
     <!-- Profile Dropdown Button -->
     <div class="relative">
         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link">
-            <img src="/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
+            @php
+                // Türkçe karakterleri İngilizce karşılıklarına çeviren fonksiyon
+                function convertTurkishChars($string)
+                {
+                    $turkish = ['ş', 'Ş', 'ı', 'İ', 'ç', 'Ç', 'ü', 'Ü', 'ö', 'Ö', 'ğ', 'Ğ'];
+                    $english = ['s', 'S', 'i', 'I', 'c', 'C', 'u', 'U', 'o', 'O', 'g', 'G'];
+                    return str_replace($turkish, $english, $string);
+                }
+
+                // Kullanıcının adını al ve Türkçe karakterleri İngilizce karşılıklarına çevir
+                $name = convertTurkishChars(auth()->user()->name);
+                $a = strtoupper(substr($name, 0, 1));
+                $b = '';
+
+                // Kullanıcının soyadının baş harfini al
+                if (strpos($name, ' ') !== false) {
+                    $b = strtoupper(substr($name, strpos($name, ' ') + 1, 1));
+                }
+            @endphp
+
+            <!-- Profil resmini göster veya varsayılan simgeyi göster -->
+            <div class="flex items-center">
+                @if (auth()->check() && auth()->user()->user_image)
+                    <img src="{{ asset('storage/' . auth()->user()->user_image) }}" alt="user-image"
+                        class="w-10 h-10 rounded-full object-cover">
+                @else
+                    <div class="w-10 h-10 flex justify-center items-center bg-success/25 rounded-full">
+                        <span class="text-success text-xl">{{ $a }}{{ $b }}</span>
+                    </div>
+                @endif
+            </div>
         </button>
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="apps-kanban.html">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+            @role('super-admin')
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                href="{{ route('user.index') }}">
+                <i class="mgc_user_3_line  me-2"></i>
+                <span>Kullanıcı Oluştur</span>
+            </a>
+            @endrole
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                href="{{ route('pagination.user.profil') }}">
                 <i class="mgc_task_2_line  me-2"></i>
                 <span>Profil Düzenle</span>
             </a>
             <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="mgc_exit_line  me-2"></i>
                 <span>Çıkış Yap</span>
             </a>
@@ -156,13 +204,18 @@
 <!-- Topbar Search Modal -->
 <div>
     <div id="topbar-search-modal" class="fc-modal hidden w-full h-full fixed top-0 start-0 z-50">
-        <div class="fc-modal-open:opacity-100 fc-modal-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-12 sm:mx-auto">
-            <div class="mx-auto max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl transition-all dark:bg-slate-800">
+        <div
+            class="fc-modal-open:opacity-100 fc-modal-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-12 sm:mx-auto">
+            <div
+                class="mx-auto max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl transition-all dark:bg-slate-800">
                 <div class="relative">
-                    <div class="pointer-events-none absolute top-3.5 start-4 text-gray-900 text-opacity-40 dark:text-gray-200">
+                    <div
+                        class="pointer-events-none absolute top-3.5 start-4 text-gray-900 text-opacity-40 dark:text-gray-200">
                         <i class="mgc_search_line text-xl"></i>
                     </div>
-                    <input type="search" class="h-12 w-full border-0 bg-transparent ps-11 pe-4 text-gray-900 placeholder-gray-500 dark:placeholder-gray-300 dark:text-gray-200 focus:ring-0 sm:text-sm" placeholder="Search...">
+                    <input type="search"
+                        class="h-12 w-full border-0 bg-transparent ps-11 pe-4 text-gray-900 placeholder-gray-500 dark:placeholder-gray-300 dark:text-gray-200 focus:ring-0 sm:text-sm"
+                        placeholder="Search...">
                 </div>
             </div>
         </div>
