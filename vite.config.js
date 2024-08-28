@@ -8,6 +8,8 @@ export default defineConfig({
                 // Theme Css
                 'resources/scss/app.scss',
                 'resources/scss/icons.scss',
+                'resources/css/app.css',
+
 
                 'node_modules/animate.css/animate.min.css',
                 'node_modules/animate.css/animate.compat.css',

@@ -145,7 +145,7 @@
                                 <label class="block text-sm font-medium text-gray-700">Sıcaklık(°C):</label>
                                 <input type="number"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" name="head"
-                                    id="head" step="0.0001" min="0" max="100.00">
+                                    id="head" step="0.0001" min="-100" max="100.00">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Eh(mv):</label>
@@ -157,13 +157,13 @@
                                 <label class="block text-sm font-medium text-gray-700">EC(µS/cm):</label>
                                 <input type="number"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" name="ec"
-                                    id="ec" step="0.0001" min="0" max="100.00">
+                                    id="ec" step="0.0001" min="-5000.00" max="5000.00">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">TDS(mg/l):</label>
                                 <input type="number"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" name="tds"
-                                    id="tds" step="0.0001" min="0" max="100.00">
+                                    id="tds" step="0.0001" min="-5000.00" max="5000.00">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Tuzluluk(‰):</label>
@@ -187,7 +187,7 @@
                                 <label class="block text-sm font-medium text-gray-700">Oksijen Doy. (%):</label>
                                 <input type="number"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" name="oxygenS"
-                                    id="oxygenS" step="0.0001" min="0" max="100.00">
+                                    id="oxygenS" step="0.0001" min="-5000.00" max="5000.00">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Debi (l/sn):</label>
