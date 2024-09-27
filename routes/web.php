@@ -1,14 +1,23 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\EisenhowerController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ParselController;
+use App\Http\Controllers\ParselSorguController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\SuIzleme;
 use App\Http\Controllers\SuIzlemeController;
 use App\Http\Controllers\UserAdminController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfilController;
+use App\Livewire\Eisenhower;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Request;
+
+
+
 
 
 /*
@@ -30,13 +39,27 @@ Route::group(['middleware' => 'auth'], function () {
 
     // sayfaların rotaları burada
     Route::group(['prefix' => 'pagination'], function () {
-        Route::get('/eisenhower', [PageController::class, 'eisenhower'])->name('pagination.eisenhower');
+
+        //Eisenhower
+        Route::resource('/eisenhower', EisenhowerController::class)->names([
+            'index'   => 'eisenhower.index',
+            'create'  => 'eisenhower.create',
+            'store'   => 'eisenhower.store',
+            'show'    => 'eisenhower.show',
+            'edit'    => 'eisenhower.edit',
+            'update'  => 'eisenhower.update',
+            'destroy' => 'eisenhower.destroy',
+        ]);
+        // su izleme
         Route::get('/suIzleme', [SuIzlemeController::class, 'index'])->name('pagination.suIzleme');
         Route::get('/suIzleme/Store', [SuIzlemeController::class, 'store'])->name('pagination.suIzleme.store');
         Route::post('/suIzleme/Create', [SuIzlemeController::class, 'create'])->name('pagination.suIzleme.create');
         Route::get('/suIzleme/Show/{id}', [SuIzlemeController::class, 'show'])->name('pagination.suIzleme.show');
+        // su izleme bitiş
+        // profil işlemleri
         Route::get('/profile', [UserProfilController::class, 'index'])->name('pagination.user.profil');
         Route::post('/profile/Update', [UserProfilController::class, 'update'])->name('pagination.user.update');
+        // profil işlemleri bitiş
     });
 
     //admin routları burada

@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('weather')->nullable();
             $table->string('temp')->nullable();
-            $table->string('extent')->nullable()->nullable();
-            $table->json('alinis_sekli')->nullable()->nullable();
+            $table->string('extent')->nullable();
+            $table->json('alinis_sekli')->nullable();
             $table->string('tip')->nullable();
             $table->decimal('ph', 7, 2)->nullable();
             $table->decimal('head', 7, 2)->nullable();
@@ -38,8 +38,8 @@ return new class extends Migration
             $table->decimal('water', 7, 2)->nullable();
             $table->decimal('fountain', 7, 2)->nullable();
             $table->text('notes')->nullable();
-            $table->string('image_path')->nullable()->nullable();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null')->nullable();
+            $table->string('image_path')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
         });

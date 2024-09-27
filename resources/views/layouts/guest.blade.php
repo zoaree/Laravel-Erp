@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Mitto Consultancy</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -17,7 +17,7 @@
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
-        </div><img src="/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
+        </div>
 
     </body>
 </html>

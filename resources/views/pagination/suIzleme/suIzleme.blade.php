@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Su İzleme', 'sub_title' => 'Genel', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+@extends('layouts.vertical', ['title' => 'Su izleme', 'sub_title' => 'Genel', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('css')
     <!-- Grid.js ve teması için CDN -->
