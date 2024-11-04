@@ -60,41 +60,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create users
         $users = [
-            ['name' => 'Abdulkadir Ünsal', 'email' => 'abdulkadir.unsal@domain.com', 'password' => Hash::make('1'), 'role' => 'super-admin'],
-            ['name' => 'Super Admin 2', 'email' => 'superadmin2@domain.com', 'password' => Hash::make('1'), 'role' => 'super-admin'],
+            ['name' => 'Abdulkadir Ünsal', 'email' => 'abdulkadir.unsal@mitto.com.tr', 'password' => Hash::make('sam55sam'), 'role' => 'super-admin'],
 
-            ['name' => 'Admin User 1', 'email' => 'admin1@domain.com', 'password' => Hash::make('1'), 'role' => 'admin'],
-            ['name' => 'Admin User 2', 'email' => 'admin2@domain.com', 'password' => Hash::make('1'), 'role' => 'admin'],
-
-            ['name' => 'Proje Lideri 1', 'email' => 'proje.lideri1@domain.com', 'password' => Hash::make('1'), 'role' => 'proje-lideri'],
-            ['name' => 'Proje Lideri 2', 'email' => 'proje.lideri2@domain.com', 'password' => Hash::make('1'), 'role' => 'proje-lideri'],
-
-            ['name' => 'İletişim Tasarım 1', 'email' => 'iletisim.tasarim1@domain.com', 'password' => Hash::make('1'), 'role' => 'iletisim-tasarim'],
-            ['name' => 'İletişim Tasarım 2', 'email' => 'iletisim.tasarim2@domain.com', 'password' => Hash::make('1'), 'role' => 'iletisim-tasarim'],
-
-            ['name' => 'Proje Ekibi 1', 'email' => 'proje.ekibi1@domain.com', 'password' => Hash::make('1'), 'role' => 'proje-ekibi'],
-            ['name' => 'Proje Ekibi 2', 'email' => 'proje.ekibi2@domain.com', 'password' => Hash::make('1'), 'role' => 'proje-ekibi'],
-
-            ['name' => 'Çevre Ekibi 1', 'email' => 'cevre.ekibi1@domain.com', 'password' => Hash::make('1'), 'role' => 'cevre-ekibi'],
-            ['name' => 'Çevre Ekibi 2', 'email' => 'cevre.ekibi2@domain.com', 'password' => Hash::make('1'), 'role' => 'cevre-ekibi'],
-
-            ['name' => 'Maden Ekibi 1', 'email' => 'maden.ekibi1@domain.com', 'password' => Hash::make('1'), 'role' => 'maden-ekibi'],
-            ['name' => 'Maden Ekibi 2', 'email' => 'maden.ekibi2@domain.com', 'password' => Hash::make('1'), 'role' => 'maden-ekibi'],
-
-            ['name' => 'İdari İşler 1', 'email' => 'idari.isler1@domain.com', 'password' => Hash::make('1'), 'role' => 'idari-isler'],
-            ['name' => 'İdari İşler 2', 'email' => 'idari.isler2@domain.com', 'password' => Hash::make('1'), 'role' => 'idari-isler'],
-
-            ['name' => 'Muhasebe 1', 'email' => 'muhasebe1@domain.com', 'password' => Hash::make('1'), 'role' => 'muhasebe'],
-            ['name' => 'Muhasebe 2', 'email' => 'muhasebe2@domain.com', 'password' => Hash::make('1'), 'role' => 'muhasebe'],
-
-            ['name' => 'Satın Alma 1', 'email' => 'satin.alma1@domain.com', 'password' => Hash::make('1'), 'role' => 'satin-alma'],
-            ['name' => 'Satın Alma 2', 'email' => 'satin.alma2@domain.com', 'password' => Hash::make('1'), 'role' => 'satin-alma'],
-
-            ['name' => 'GIS Ekibi 1', 'email' => 'gis.ekibi1@domain.com', 'password' => Hash::make('1'), 'role' => 'gis-ekibi'],
-            ['name' => 'GIS Ekibi 2', 'email' => 'gis.ekibi2@domain.com', 'password' => Hash::make('1'), 'role' => 'gis-ekibi'],
-
-            ['name' => 'Orman Ekibi 1', 'email' => 'orman.ekibi1@domain.com', 'password' => Hash::make('1'), 'role' => 'orman-ekibi'],
-            ['name' => 'Orman Ekibi 2', 'email' => 'orman.ekibi2@domain.com', 'password' => Hash::make('1'), 'role' => 'orman-ekibi'],
         ];
 
         foreach ($users as $userData) {
